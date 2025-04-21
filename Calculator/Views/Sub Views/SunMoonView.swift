@@ -8,11 +8,31 @@
 import SwiftUI
 
 struct SunMoonView: View {
+    var isDarkMode: Bool
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack(spacing: 30) {
+            Image(systemName: "sun.min")
+                .imageScale(.large)
+                .foregroundColor(
+                    isDarkMode ? sunOrMoonNotSelectedColor : sunOrMoonSelectedColor
+                )
+            Image(systemName: "moon")
+                .imageScale(.large)
+                .foregroundColor(
+                    isDarkMode ? sunOrMoonSelectedColor : sunOrMoonNotSelectedColor
+                )
+        }
+        .padding()
+        .background(secondaryBackgroundColor)
+        .cornerRadius(20)
+        Text("SunMoonView")
+        
     }
 }
 
 #Preview {
-    SunMoonView()
+    VStack {
+        SunMoonView(isDarkMode: true)
+        SunMoonView(isDarkMode: false)
+    }
 }

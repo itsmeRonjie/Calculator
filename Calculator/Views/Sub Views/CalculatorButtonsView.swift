@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct CalculatorButtonsView: View {
+    @Binding var mainResult: String
+    @Binding var currentComputation: String
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text(mainResult)
+        Text(currentComputation)
     }
 }
 
 #Preview {
-    CalculatorButtonsView()
+    CalculatorButtonsView(
+        mainResult: .constant("5+1"),
+        currentComputation: .constant("6")
+    )
 }
