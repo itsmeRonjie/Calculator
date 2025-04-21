@@ -32,3 +32,7 @@ func lastCharIsDigitOrPercent(_ input: String) -> Bool {
 func lastCharIsDigit(_ input: String) -> Bool {
     ("0"..."9").contains(getLastChar(input))
 }
+
+func lastCharIsAnOperator(_ input: String) -> Bool {
+    operators.contains(getLastChar(input))
+}

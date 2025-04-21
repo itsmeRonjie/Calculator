@@ -107,7 +107,15 @@ struct CalculatorButtonsView: View {
         switch calcButton {
             
         case .equals, .negative:
-            print("equal or negative")
+            if !currentComputation.isEmpty{
+                if !lastCharIsAnOperator(currentComputation) {
+                    let sign = calcButton == .negative ? -1.0 : 1.0
+                    mainResult = formatResult(sign*calculateResults())
+                    if calcButton == .negative {
+                        currentComputation = mainResult
+                    }
+                }
+            }
             
         case .decimal:
             print("decimal")
@@ -136,6 +144,22 @@ struct CalculatorButtonsView: View {
     
     func appendToCurrentComputation(_ calcButton: CalcButton) {
         currentComputation += calcButton.rawValue
+    }
+    
+    func calculateResults() -> Double {
+        let visibleWorkings: String = currentComputation
+        var workings = visibleWorkings.replacingOccurrences(of: "%", with: "*0.01")
+        workings = workings.replacingOccurrences(of: multiplySymbol, with: "*")
+        workings = workings.replacingOccurrences(of: divisionSymbol, with: "/")
+        
+        if getLastChar(visibleWorkings) == "." {
+            workings += "0"
+        }
+        
+        let expr = NSExpression(format: workings)
+        let exprValue = expr.expressionValue(with: nil, context: nil) as! Double
+        
+        return exprValue
     }
 }
 

@@ -43,6 +43,6 @@ enum CalcButton: String {
 let enumOperators: [CalcButton] = [.add, .subtract, .multiply, .divide]
 
 let multiplySymbol: String = CalcButton.multiply.rawValue
-let divideSymbol: String = CalcButton.divide.rawValue
+let divisionSymbol: String = CalcButton.divide.rawValue
 
-let operatros: String = "+-\(multiplySymbol)\(divideSymbol)"
+let operators: String = "+-\(multiplySymbol)\(divisionSymbol)"
