@@ -105,7 +105,6 @@ struct CalculatorButtonsView: View {
     
     func buttonPressed(calcButton: CalcButton) {
         switch calcButton {
-            
         case .equals, .negative:
             if !currentComputation.isEmpty{
                 if !lastCharIsAnOperator(currentComputation) {
@@ -118,7 +117,26 @@ struct CalculatorButtonsView: View {
             }
             
         case .decimal:
-            print("decimal")
+            if let lastOccurenceOfDecimal = currentComputation.lastIndex(of: ".") {
+                if lastCharIsDigit(currentComputation) {
+                    let startIndex = currentComputation.index(after: lastOccurenceOfDecimal)
+                    let endIndex = currentComputation.endIndex
+                    let range = startIndex..<endIndex
+                    
+                    let rightSubstring = String(currentComputation[range])
+                    
+                    if Int(rightSubstring) == nil && !rightSubstring.isEmpty {
+                        currentComputation += "."
+                    }
+                }
+            } else {
+                if currentComputation.isEmpty {
+                    currentComputation += "0."
+                } else if lastCharIsDigit(currentComputation) {
+                    currentComputation += "."
+                }
+            }
+            
             
         case .percent:
             if lastCharIsDigit(currentComputation) {
