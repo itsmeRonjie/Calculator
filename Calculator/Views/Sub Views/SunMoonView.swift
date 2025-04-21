@@ -25,8 +25,6 @@ struct SunMoonView: View {
         .padding()
         .background(secondaryBackgroundColor)
         .cornerRadius(20)
-        Text("SunMoonView")
-        
     }
 }
 

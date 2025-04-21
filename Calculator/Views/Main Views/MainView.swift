@@ -27,8 +27,8 @@ struct MainView: View {
                 Spacer()
                 
                 ComputationView(
-                    mainResult: mainResult,
-                    currentComputation: currentComputation
+                    currentComputation: currentComputation,
+                    mainResult: mainResult
                 )
                 Spacer()
                 
