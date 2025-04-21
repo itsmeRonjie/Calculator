@@ -24,3 +24,11 @@ func formatResult(_ result: Double) -> String {
     numberFormatter.maximumFractionDigits = 16
     return numberFormatter.string(from: NSNumber(value: result)) ?? "0"
 }
+
+func lastCharIsDigitOrPercent(_ input: String) -> Bool {
+    ("0123456789%").contains(getLastChar(input))
+}
+
+func lastCharIsDigit(_ input: String) -> Bool {
+    ("0"..."9").contains(getLastChar(input))
+}
