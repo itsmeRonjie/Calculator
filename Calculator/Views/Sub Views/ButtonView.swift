@@ -29,7 +29,9 @@ struct ButtonView: View {
         return value.contains("IMG") ? nil : value
     }
     
-    let buttonDim: CGFloat = UIScreen.main.bounds.width / 5
+    let buttonDim: CGFloat = UIDevice.isIPad ?
+    UIScreen.main.bounds.width / 6 :
+    UIScreen.main.bounds.width / 5
     
     var body: some View {
         ZStack {

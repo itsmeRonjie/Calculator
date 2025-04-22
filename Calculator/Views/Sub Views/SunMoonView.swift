@@ -12,16 +12,21 @@ struct SunMoonView: View {
     var body: some View {
         HStack(spacing: 30) {
             Image(systemName: "sun.min")
-                .imageScale(.large)
                 .foregroundColor(
-                    isDarkMode ? sunOrMoonNotSelectedColor : sunOrMoonSelectedColor
+                    isDarkMode
+                    ? sunOrMoonNotSelectedColor
+                    : sunOrMoonSelectedColor
                 )
             Image(systemName: "moon")
-                .imageScale(.large)
                 .foregroundColor(
-                    isDarkMode ? sunOrMoonSelectedColor : sunOrMoonNotSelectedColor
+                    isDarkMode
+                    ? sunOrMoonSelectedColor
+                    : sunOrMoonNotSelectedColor
                 )
         }
+        .imageScale(.large)
+        .font(UIDevice.isIPad ? .title : .body)
+        .fontWeight(UIDevice.isIPad ? .semibold : .regular)
         .padding()
         .background(secondaryBackgroundColor)
         .cornerRadius(20)
