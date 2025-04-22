@@ -99,8 +99,8 @@ struct CalculatorButtonsView: View {
                 }
             }
         }
-        .padding()
-        .background(secondaryBackgroundColor.cornerRadius(20))
+        .padding(.vertical)
+        .background(primaryBackgroundColor.opacity(0.5).cornerRadius(20))
     }
     
     func buttonPressed(calcButton: CalcButton) {
@@ -190,6 +190,5 @@ struct CalculatorButtonsView: View {
                 width: geometry.size.width
             )
         }
-        .padding()
     }
 }

@@ -35,8 +35,12 @@ struct ButtonView: View {
     
     var body: some View {
         ZStack {
-            Text(text ?? "")
-            Image(systemName: systemImage ?? "")
+            if let text = text {
+                Text(text)
+            }
+            if let systemImage = systemImage {
+                Image(systemName: systemImage)
+            }
         }
         .font(UIDevice.isIPad ? .largeTitle : .title2)
         .fontWeight(UIDevice.isIPad ? .heavy : .semibold)
