@@ -84,7 +84,6 @@ struct CalculatorButtonsView: View {
                 GridRow {
                     ForEach(rowOfCalcButtonModel.row) { calcButtonModel in
                         Button {
-                            print("btn tapped")
                             buttonPressed(
                                 calcButton: calcButtonModel.calcButton
                             )
