@@ -10,7 +10,7 @@ import SwiftUI
 struct CalculatorButtonsView: View {
     @Binding var mainResult: String
     @Binding var currentComputation: String
-    
+    let width: CGFloat
     let buttonData: [RowOfCalcButtonModel] = [
         RowOfCalcButtonModel(
             row: [
@@ -91,7 +91,8 @@ struct CalculatorButtonsView: View {
                             ButtonView(
                                 calcButton: calcButtonModel.calcButton,
                                 fgColor: calcButtonModel.color,
-                                bgColor: buttonBackgroundColor
+                                bgColor: buttonBackgroundColor,
+                                width: width
                             )
                         }
                     }
@@ -181,8 +182,14 @@ struct CalculatorButtonsView: View {
 }
 
 #Preview {
-    CalculatorButtonsView(
-        mainResult: .constant("5+1"),
-        currentComputation: .constant("6")
-    )
+    GeometryReader { geometry in
+        VStack {
+            CalculatorButtonsView(
+                mainResult: .constant("5+1"),
+                currentComputation: .constant("6"),
+                width: geometry.size.width
+            )
+        }
+        .padding()
+    }
 }

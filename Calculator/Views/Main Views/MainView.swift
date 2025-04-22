@@ -12,43 +12,46 @@ struct MainView: View {
     @State var currentComputation = ""
     @State var mainResult = "0"
     var body: some View {
-        ZStack {
-            primaryBackgroundColor.ignoresSafeArea()
-            
-
-            VStack {
-                SunMoonView(isDarkMode: isDarkMode)
-                    .onTapGesture {
-                        withAnimation {
-                            isDarkMode.toggle()
+        GeometryReader { geometry in
+            ZStack {
+                primaryBackgroundColor.ignoresSafeArea()
+                
+                
+                VStack {
+                    SunMoonView(isDarkMode: isDarkMode)
+                        .onTapGesture {
+                            withAnimation {
+                                isDarkMode.toggle()
+                            }
                         }
-                    }
-                
-                Spacer()
-                
-                ComputationView(
-                    currentComputation: currentComputation,
-                    mainResult: mainResult
-                )
-                .padding(
-                    .horizontal,
-                    UIDevice.isIPad ?
-                    UIScreen.main.bounds.width * 0.1 : 0)
-                
-                Spacer()
-                
-                CalculatorButtonsView(
-                    mainResult: $mainResult,
-                    currentComputation: $currentComputation
-                )
-                
-                if UIDevice.isIPad {
+                    
                     Spacer()
+                    
+                    ComputationView(
+                        currentComputation: currentComputation,
+                        mainResult: mainResult
+                    )
+                    .padding(
+                        .horizontal,
+                        UIDevice.isIPad ?
+                        geometry.size.width * 0.1 : 0)
+                    
+                    Spacer()
+                    
+                    CalculatorButtonsView(
+                        mainResult: $mainResult,
+                        currentComputation: $currentComputation,
+                        width: geometry.size.width
+                    )
+                    
+                    if UIDevice.isIPad {
+                        Spacer()
+                    }
                 }
+                .padding()
             }
-            .padding()
+            .environment(\.colorScheme, isDarkMode ? .dark : .light)
         }
-        .environment(\.colorScheme, isDarkMode ? .dark : .light)
     }
 }
 

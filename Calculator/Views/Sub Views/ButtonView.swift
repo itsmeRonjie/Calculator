@@ -11,6 +11,7 @@ struct ButtonView: View {
     let calcButton: CalcButton
     let fgColor: Color
     let bgColor: Color
+    let width: CGFloat
     
     var systemImage: String? {
         let value = calcButton.rawValue
@@ -23,15 +24,14 @@ struct ButtonView: View {
             nil
         }
     }
-    
     var text: String? {
         let value = calcButton.rawValue
         return value.contains("IMG") ? nil : value
     }
     
-    let buttonDim: CGFloat = UIDevice.isIPad ?
-    UIScreen.main.bounds.width / 6 :
-    UIScreen.main.bounds.width / 5
+    var buttonDim: CGFloat {
+        UIDevice.isIPad ? width / 6 : width / 5
+    }
     
     var body: some View {
         ZStack {
@@ -49,21 +49,26 @@ struct ButtonView: View {
 }
 
 #Preview {
-    VStack {
-        ButtonView(
-            calcButton: .one,
-            fgColor: foregroundDigitsColor,
-            bgColor: buttonBackgroundColor
-        )
-        ButtonView(
-            calcButton: .clear,
-            fgColor: foregroundTopButtonsColor,
-            bgColor: buttonBackgroundColor
-        )
-        ButtonView(
-            calcButton: .negative,
-            fgColor: foregroundRightButtonsColor,
-            bgColor: buttonBackgroundColor
-        )
+    GeometryReader { geometry in
+        VStack {
+            ButtonView(
+                calcButton: .one,
+                fgColor: foregroundDigitsColor,
+                bgColor: buttonBackgroundColor,
+                width: geometry.size.width
+            )
+            ButtonView(
+                calcButton: .clear,
+                fgColor: foregroundTopButtonsColor,
+                bgColor: buttonBackgroundColor,
+                width: geometry.size.width
+            )
+            ButtonView(
+                calcButton: .negative,
+                fgColor: foregroundRightButtonsColor,
+                bgColor: buttonBackgroundColor,
+                width: geometry.size.width
+            )
+        }
     }
 }
